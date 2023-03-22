@@ -74,36 +74,6 @@ void AddXenonEffect_Contrail_Hook(void* piggyback_fx, void* spec, bMatrix4* mat,
     RenderConnFC++;
 }
 
-void __declspec(naked) mathfunc2()
-{
-    _asm
-    {
-                fld     dword ptr [esp+4]
-                fcomp   dword ptr [esp+8]
-                fnstsw  ax
-                test    ah, 41h
-                jnz     short loc_4010F5
-                fld     dword ptr [esp+4]
-                jmp     short loc_4010F9
-; ---------------------------------------------------------------------------
-
-loc_4010F5:                             ; CODE XREF: sub_4010E0+D↑j
-                fld     dword ptr [esp+8]
-
-loc_4010F9:                             ; CODE XREF: sub_4010E0+13↑j
-                fld     dword ptr [esp+0Ch]
-                fcomp   st(1)
-                fnstsw  ax
-                test    ah, 5
-                jp      short locret_40110C
-                fstp    st
-                fld     dword ptr [esp+0Ch]
-
-locret_40110C:                          ; CODE XREF: sub_4010E0+24↑j
-                retn
-    }
-}
-
 void __declspec(naked) CarRenderConnHook()
 {
 	_asm
